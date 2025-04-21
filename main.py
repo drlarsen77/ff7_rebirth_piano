@@ -29,6 +29,7 @@ JOYSTICK_METHODS = {
 
 
 def on_click(x, y, button, pressed):
+    print(f'click')
     mouse_listener.stop()
     play_song(song)
 
@@ -64,9 +65,10 @@ def push_both_joysticks(direction_left, direction_right):
 
 
 def delay(val):
-    if val < KEY_DELAY:
+    sleeptime = val - KEY_DELAY - 0.001
+    if sleeptime <= 0:
         return
-    sleep(val - KEY_DELAY)
+    sleep(sleeptime)
 
 
 def load_song_data_from_csv(song_name):
@@ -121,10 +123,13 @@ def play_song(song_name):
 
 
 def setup_listener():
-    global mouse_listener
-    mouse_listener.start()
-    print("Click onto the PS Remote Play / Chiaki window")
-    mouse_listener.join()
+    #global mouse_listener
+    #mouse_listener.start()
+    #print("Click onto the PS Remote Play / Chiaki window")
+    #mouse_listener.join()
+    #delay(5)
+    print("Starting...")
+    play_song(song)
 
 
 def get_song_from_user():
